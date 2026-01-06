@@ -17,7 +17,7 @@ const WhatsAppButton = () => {
 
             {/* Tooltip Popup */}
             <div
-                className={`mb-4 mr-2 bg-white text-primary-dark px-4 py-3 rounded-lg shadow-xl relative transition-all duration-500 ease-out transform ${showTooltip ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}
+                className={`mb-4 mr-2 bg-white text-primary-dark px-4 py-3 rounded-lg shadow-xl relative transition-all duration-500 ease-out transform ${showTooltip ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'} animate-bounce-subtle`}
             >
                 <div className="text-sm font-bold flex items-center justify-between gap-4">
                     <span>Faça uma cotação grátis! 👋</span>

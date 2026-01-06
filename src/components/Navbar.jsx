@@ -21,7 +21,6 @@ const Navbar = () => {
                 <div className="hidden md:flex items-center space-x-8">
                     <a href="#about" className="font-medium hover:text-[var(--primary-blue)] transition-colors">Sobre</a>
                     <a href="#services" className="font-medium hover:text-[var(--primary-blue)] transition-colors">Serviços</a>
-                    <a href="#method" className="font-medium hover:text-[var(--primary-blue)] transition-colors">Método Guetro</a>
                     <a href="#testimonials" className="font-medium hover:text-[var(--primary-blue)] transition-colors">Depoimentos</a>
                     <a href="#contact" className="btn btn-primary">
                         Fale Conosco
@@ -42,7 +41,6 @@ const Navbar = () => {
                     <div className="flex flex-col space-y-4 px-6">
                         <a onClick={toggleMenu} href="#about" className="font-medium hover:text-[var(--primary-blue)]">Sobre</a>
                         <a onClick={toggleMenu} href="#services" className="font-medium hover:text-[var(--primary-blue)]">Serviços</a>
-                        <a onClick={toggleMenu} href="#method" className="font-medium hover:text-[var(--primary-blue)]">Método Guetro</a>
                         <a onClick={toggleMenu} href="#testimonials" className="font-medium hover:text-[var(--primary-blue)]">Depoimentos</a>
                         <a onClick={toggleMenu} href="#contact" className="btn btn-primary w-full text-center">
                             Fale Conosco
