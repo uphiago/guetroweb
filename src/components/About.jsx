@@ -16,29 +16,29 @@ const About = () => {
                         </h2>
 
                         <p className="text-gray-600 mb-6 text-lg leading-relaxed">
-                            A <strong>Guetro Corretora de Seguros</strong> é especializada em soluções completas em seguros e benefícios, atendendo famílias e empresas em todo o Brasil.
+                            A Guetro Corretora de Seguros é especializada em soluções completas em seguros e benefícios, atendendo famílias e empresas em todo o Brasil.
                         </p>
                         <p className="text-gray-600 mb-8 leading-relaxed">
-                            Nosso atendimento é estruturado, transparente e orientado a resultado. Não entregamos apenas uma apólice, mas sim um acompanhamento contínuo antes, durante e após a contratação.
+                            Para empresas: retenção de talentos e aumento de produtividade. Para famílias: proteção e tranquilidade.
                         </p>
 
                         <div className="space-y-6">
                             <div className="flex items-start gap-4">
                                 <div className="bg-blue-50 p-3 rounded-lg text-primary-blue">
-                                    <BarChart3 size={24} />
+                                    <Target size={24} />
                                 </div>
                                 <div>
-                                    <h4 className="font-bold font-anta text-primary-dark">Análise Técnica de Perfil</h4>
-                                    <p className="text-sm text-gray-500">Avaliamos detalhadamente suas necessidades para evitar excessos ou faltas na cobertura.</p>
+                                    <h4 className="font-bold font-anta text-primary-dark">Diagnóstico Personalizado</h4>
+                                    <p className="text-sm text-gray-500">Vamos entender o seu momento e o momento da sua empresa, alinhar as necessidades e expectativas.</p>
                                 </div>
                             </div>
                             <div className="flex items-start gap-4">
                                 <div className="bg-blue-50 p-3 rounded-lg text-primary-blue">
-                                    <Target size={24} />
+                                    <BarChart3 size={24} />
                                 </div>
                                 <div>
-                                    <h4 className="font-bold font-anta text-primary-dark">Comparação Estratégica</h4>
-                                    <p className="text-sm text-gray-500">Confrontamos as opções do mercado para encontrar o perfeito equilíbrio entre cobertura e investimento.</p>
+                                    <h4 className="font-bold font-anta text-primary-dark">Método Guetro</h4>
+                                    <p className="text-sm text-gray-500">Cruzaremos os dados internos, dados externos e as informações das seguradoras para identificar qual se alinha com o perfil e assim faremos uma recomendação.</p>
                                 </div>
                             </div>
                             <div className="flex items-start gap-4">
@@ -46,8 +46,8 @@ const About = () => {
                                     <Users2 size={24} />
                                 </div>
                                 <div>
-                                    <h4 className="font-bold font-anta text-primary-dark">Foco em Pessoas</h4>
-                                    <p className="text-sm text-gray-500">Para empresas: retenção de talentos e aumento de produtividade. Para famílias: proteção e tranquilidade.</p>
+                                    <h4 className="font-bold font-anta text-primary-dark">Acompanhamento Vitalício</h4>
+                                    <p className="text-sm text-gray-500">A Guetro se compromete a acompanhar integralmente o seu contrato durante toda a vigência, realizando reavaliações sempre que necessário.</p>
                                 </div>
                             </div>
                         </div>
@@ -77,9 +77,10 @@ const About = () => {
                                         <div key={i} className={`w-10 h-10 rounded-full border-2 border-white bg-gray-300 flex items-center justify-center text-xs font-bold text-gray-500`}>U{i}</div>
                                     ))}
                                 </div>
-                                <span className="font-bold text-primary-dark">+500</span>
+                                <span className="font-bold text-primary-dark">+300</span>
                             </div>
-                            <p className="text-sm text-gray-600">Vidas e patrimônios protegidos em todo o Brasil.</p>
+                            <p className="text-sm text-gray-600 mb-1">Vidas orientadas e protegidas.</p>
+                            <p className="text-sm font-bold text-primary-blue">+R$100k em contratos ativos</p>
                         </div>
                     </div>
 

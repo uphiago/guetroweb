@@ -23,14 +23,14 @@ const Hero = () => {
                         </div>
 
                         <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold font-anta leading-[1.1] mb-6">
-                            <span className="text-white block">O futuro da sua</span>
+                            <span className="text-white block">O Seguro que sua</span>
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-white block">
-                                Tranquilidade
+                                empresa e família precisa
                             </span>
                         </h1>
 
                         <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-xl leading-relaxed">
-                            Planos de saúde, seguros de vida e benefícios corporativos com a transparência do <strong>Método Guetro</strong>. Análise técnica para garantir a melhor proteção.
+                            Planos de saúde, Seguro de vida e benefícios corporativos, como ajudamos empresas e famílias com o <strong>método Guetro</strong>.
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4">
