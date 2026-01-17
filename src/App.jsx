@@ -7,6 +7,8 @@ import SocialProof from './components/SocialProof';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 
+import { Analytics } from "@vercel/analytics/react"
+
 function App() {
   return (
     <div className="min-h-screen bg-background text-text-color font-sans">
@@ -21,6 +23,7 @@ function App() {
         <Footer />
       </div>
       <WhatsAppButton />
+      <Analytics />
     </div>
   );
 }
