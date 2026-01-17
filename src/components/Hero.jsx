@@ -94,24 +94,27 @@ const Hero = () => {
                         </div>
 
                         {/* Card 3: Family/Protection (Left Center - Main Focus) */}
-                        <div className="absolute top-[45%] left-0 md:left-10 -translate-y-1/2 w-72 bg-gradient-to-br from-primary-blue to-blue-900 border border-white/20 p-6 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-30 animate-float will-change-transform" style={{ animationDelay: '4s' }}>
-                            <div className="flex items-center gap-4 mb-6">
-                                <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm">
-                                    <ShieldCheck size={28} className="text-white" />
+                        {/* Card 3: Family/Protection (Left Center - Main Focus) */}
+                        <div className="absolute top-[45%] left-0 md:left-10 -translate-y-1/2 z-30">
+                            <div className="w-72 bg-gradient-to-br from-primary-blue to-blue-900 border border-white/20 p-6 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] animate-float will-change-transform" style={{ animationDelay: '4s' }}>
+                                <div className="flex items-center gap-4 mb-6">
+                                    <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm">
+                                        <ShieldCheck size={28} className="text-white" />
+                                    </div>
+                                    <div>
+                                        <h3 className="font-bold text-lg text-white">Proteção Total</h3>
+                                        <p className="text-blue-200 text-xs uppercase tracking-wide">Apólice Confirmada</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h3 className="font-bold text-lg text-white">Proteção Total</h3>
-                                    <p className="text-blue-200 text-xs uppercase tracking-wide">Apólice Confirmada</p>
-                                </div>
-                            </div>
-                            <div className="space-y-3">
-                                <div className="flex justify-between text-sm text-blue-100/80">
-                                    <span>Cobertura</span>
-                                    <span>100%</span>
-                                </div>
-                                <div className="flex justify-between text-sm text-blue-100/80">
-                                    <span>Carência</span>
-                                    <span>Zero</span>
+                                <div className="space-y-3">
+                                    <div className="flex justify-between text-sm text-blue-100/80">
+                                        <span>Cobertura</span>
+                                        <span>100%</span>
+                                    </div>
+                                    <div className="flex justify-between text-sm text-blue-100/80">
+                                        <span>Carência</span>
+                                        <span>Zero</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
