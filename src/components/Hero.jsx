@@ -3,7 +3,7 @@ import { ArrowRight, HeartPulse, TrendingUp, ShieldCheck, CheckCircle2 } from 'l
 
 const Hero = () => {
     return (
-        <section id="home" className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-primary-dark text-white overflow-hidden">
+        <section id="home" className="relative pt-24 pb-16 lg:pt-36 lg:pb-24 bg-primary-dark text-white overflow-hidden">
 
             {/* Background with Grid */}
             <div className="absolute inset-0 z-0">
@@ -64,7 +64,7 @@ const Hero = () => {
                     <div className="lg:w-1/2 relative h-[500px] w-full flex items-center justify-center perspective-[1000px]">
 
                         {/* Card 1: Health (Top Right) */}
-                        <div className="absolute top-10 right-0 md:right-10 w-64 bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-2xl shadow-2xl animate-float" style={{ animationDelay: '0s' }}>
+                        <div className="absolute top-10 right-0 md:right-10 w-64 bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-2xl shadow-2xl animate-float will-change-transform" style={{ animationDelay: '0s' }}>
                             <div className="flex justify-between items-start mb-4">
                                 <div className="p-3 bg-red-500/20 rounded-xl text-red-400">
                                     <HeartPulse size={24} />
@@ -78,7 +78,7 @@ const Hero = () => {
                         </div>
 
                         {/* Card 2: Business (Bottom Right) */}
-                        <div className="absolute bottom-20 right-4 md:right-16 w-60 bg-[#1a1a1a] border border-white/10 p-5 rounded-2xl shadow-2xl z-20 animate-float" style={{ animationDelay: '2s' }}>
+                        <div className="absolute bottom-12 right-4 md:right-16 w-60 bg-[#1a1a1a] border border-white/10 p-5 rounded-2xl shadow-2xl z-20 animate-float will-change-transform" style={{ animationDelay: '2s' }}>
                             <div className="flex items-center gap-4 mb-3">
                                 <div className="p-2 bg-blue-500/20 rounded-lg text-blue-400">
                                     <TrendingUp size={20} />
@@ -94,7 +94,7 @@ const Hero = () => {
                         </div>
 
                         {/* Card 3: Family/Protection (Left Center - Main Focus) */}
-                        <div className="absolute top-1/2 left-0 md:left-10 -translate-y-1/2 w-72 bg-gradient-to-br from-primary-blue to-blue-900 border border-white/20 p-6 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-30 animate-float" style={{ animationDelay: '4s' }}>
+                        <div className="absolute top-[45%] left-0 md:left-10 -translate-y-1/2 w-72 bg-gradient-to-br from-primary-blue to-blue-900 border border-white/20 p-6 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-30 animate-float will-change-transform" style={{ animationDelay: '4s' }}>
                             <div className="flex items-center gap-4 mb-6">
                                 <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm">
                                     <ShieldCheck size={28} className="text-white" />
