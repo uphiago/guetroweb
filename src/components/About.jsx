@@ -73,9 +73,9 @@ const About = () => {
                         <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl border border-gray-100 max-w-xs hidden md:block">
                             <div className="flex items-center gap-4 mb-2">
                                 <div className="flex -space-x-3">
-                                    {[1, 2, 3].map(i => (
-                                        <div key={i} className={`w-10 h-10 rounded-full border-2 border-white bg-gray-300 flex items-center justify-center text-xs font-bold text-gray-500`}>U{i}</div>
-                                    ))}
+                                    <img src="/1.png" alt="User 1" className="w-10 h-10 rounded-full border-2 border-white object-cover" />
+                                    <img src="/2.png" alt="User 2" className="w-10 h-10 rounded-full border-2 border-white object-cover" />
+                                    <img src="/3.png" alt="User 3" className="w-10 h-10 rounded-full border-2 border-white object-cover" />
                                 </div>
                                 <span className="font-bold text-primary-dark">+300</span>
                             </div>
