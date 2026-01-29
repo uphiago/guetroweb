@@ -30,28 +30,8 @@ const SocialProof = () => {
 
             <div className="container relative z-10 mx-auto px-6 text-center">
 
-                {/* Google Rating Block */}
-                <div className="mb-12">
-                    <h2 className="text-4xl font-anta font-bold mb-6">O que dizem nossos clientes</h2>
-
-                    <a
-                        href={googleMapsUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-block group hover:scale-105 transition-transform duration-300"
-                    >
-                        <div className="flex items-center justify-center gap-2 text-yellow-400 mb-3">
-                            {[1, 2, 3, 4, 5].map((_, i) => (
-                                <Star key={i} size={32} fill="currentColor" className="drop-shadow-lg" />
-                            ))}
-                        </div>
-                        <div className="flex items-center justify-center gap-2 text-gray-300 group-hover:text-white transition-colors">
-                            <span className="text-xl font-medium">Excelente avaliação no Google</span>
-                            <ExternalLink size={18} />
-                        </div>
-                        <p className="text-sm text-gray-500 mt-2 group-hover:text-blue-300 transition-colors">Clique para ver os depoimentos reais</p>
-                    </a>
-                </div>
+                {/* Section Title */}
+                <h2 className="text-4xl font-anta font-bold mb-8">O que dizem nossos clientes</h2>
 
                 {/* Elfsight Google Reviews Widget */}
                 <div className="mb-12">
