@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Star, ExternalLink } from 'lucide-react';
 
 const SocialProof = () => {
     const googleMapsUrl = "https://www.google.com/maps/place/Guetro/@-14.4095261,-51.31668,4z/data=!4m16!1m9!3m8!1s0x47d193daf0c76131:0x76cf08d5826259b0!2sGuetro!8m2!3d-14.4095262!4d-51.31668!9m1!1b1!16s%2Fg%2F11yv2k1xcz!3m5!1s0x47d193daf0c76131:0x76cf08d5826259b0!8m2!3d-14.4095262!4d-51.31668!16s%2Fg%2F11yv2k1xcz?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D";
     const whatsappUrl = "https://api.whatsapp.com/send/?phone=5511911700112&text=Olá%2C+gostaria+de+mais+informações.&type=phone_number&app_absent=0";
+
+    // Load Elfsight script
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = 'https://static.elfsight.com/platform/platform.js';
+        script.async = true;
+        document.body.appendChild(script);
+
+        return () => {
+            // Cleanup if component unmounts
+            const existingScript = document.querySelector('script[src="https://static.elfsight.com/platform/platform.js"]');
+            if (existingScript) {
+                existingScript.remove();
+            }
+        };
+    }, []);
 
     return (
         <section id="testimonials" className="section-padding bg-primary-dark text-white relative overflow-hidden">
@@ -37,6 +53,11 @@ const SocialProof = () => {
                     </a>
                 </div>
 
+                {/* Elfsight Google Reviews Widget */}
+                <div className="mb-12">
+                    <div className="elfsight-app-14b19535-ba22-4c83-940b-5c8b0843f401" data-elfsight-app-lazy></div>
+                </div>
+
                 {/* WhatsApp CTA */}
                 <div className="flex justify-center">
                     <a
@@ -58,3 +79,4 @@ const SocialProof = () => {
 };
 
 export default SocialProof;
+
