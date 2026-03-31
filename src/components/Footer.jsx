@@ -31,21 +31,20 @@ const Footer = () => {
                                 <span className="text-gray-300">Atendimento em todo o Brasil</span>
                             </li>
                             <li className="flex items-center gap-3">
-                                {/* WhatsApp Icon for the phone number */}
                                 <img src="/whatsapp.png" alt="WhatsApp" className="w-5 h-5 shrink-0" />
-                                <a
-                                    href="https://api.whatsapp.com/send/?phone=5511911700112&text=Olá%2C+gostaria+de+mais+informações.&type=phone_number&app_absent=0"
+                                
+                                    href="https://api.whatsapp.com/send/?phone=5511989155668&text=Olá%2C+gostaria+de+mais+informações.&type=phone_number&app_absent=0"
                                     target="_blank"
                                     rel="noreferrer"
                                     className="text-gray-300 hover:text-white transition-colors"
                                 >
-                                    (11) 91170-0112
+                                    (11) 98915-5668
                                 </a>
                             </li>
                             <li className="flex items-center gap-3">
                                 <Mail className="text-[var(--primary-blue)] shrink-0" size={20} />
-                                <a href="mailto:dimitri.contro@guetro.com.br" className="text-gray-300 hover:text-white transition-colors">
-                                    dimitri.contro@guetro.com.br
+                                <a href="mailto:diorande.contro@guetro.com.br" className="text-gray-300 hover:text-white transition-colors">
+                                    diorande.contro@guetro.com.br
                                 </a>
                             </li>
                         </ul>
