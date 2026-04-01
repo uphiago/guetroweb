@@ -32,7 +32,7 @@ const Footer = () => {
                             </li>
                             <li className="flex items-center gap-3">
                                 <img src="/whatsapp.png" alt="WhatsApp" className="w-5 h-5 shrink-0" />
-                                
+                                <a
                                     href="https://api.whatsapp.com/send/?phone=5511989155668&text=Olá%2C+gostaria+de+mais+informações.&type=phone_number&app_absent=0"
                                     target="_blank"
                                     rel="noreferrer"
