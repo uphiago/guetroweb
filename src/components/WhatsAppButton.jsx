@@ -27,7 +27,7 @@ const WhatsAppButton = () => {
                 <div className="absolute bottom-0 right-6 translate-y-1/2 rotate-45 w-4 h-4 bg-white shadow-sm -z-10"></div>
             </div>
 
-            
+            <a
                 href="https://api.whatsapp.com/send/?phone=5511989155668&text=Olá%2C+gostaria+de+mais+informações.&type=phone_number&app_absent=0"
                 target="_blank"
                 rel="noopener noreferrer"
