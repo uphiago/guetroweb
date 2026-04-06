@@ -26,11 +26,11 @@ function App() {
   }
 
   if (currentPath === '/termos') {
-    return <TermosPage />;
+    return <><TermosPage /><CookieBanner /><Analytics /></>;
   }
 
   if (currentPath === '/privacidade') {
-    return <PrivacidadePage />;
+    return <><PrivacidadePage /><CookieBanner /><Analytics /></>;
   }
 
   return (

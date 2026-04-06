@@ -5,18 +5,12 @@ const SocialProof = () => {
 
     // Load Elfsight script
     useEffect(() => {
+        const src = 'https://static.elfsight.com/platform/platform.js';
+        if (document.querySelector(`script[src="${src}"]`)) return;
         const script = document.createElement('script');
-        script.src = 'https://static.elfsight.com/platform/platform.js';
+        script.src = src;
         script.async = true;
         document.body.appendChild(script);
-
-        return () => {
-            // Cleanup if component unmounts
-            const existingScript = document.querySelector('script[src="https://static.elfsight.com/platform/platform.js"]');
-            if (existingScript) {
-                existingScript.remove();
-            }
-        };
     }, []);
 
     return (

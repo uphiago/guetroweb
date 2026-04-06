@@ -1,6 +1,6 @@
 import React from 'react';
+import { EMAIL_PRIMARY } from '../lib/constants';
 
-const EMAIL = 'guetroseguros@gmail.com';
 const UPDATED_AT = '6 de abril de 2026';
 
 export default function PrivacidadePage() {
@@ -96,10 +96,10 @@ export default function PrivacidadePage() {
             </p>
             <p className="mt-2">
               <a
-                href={`mailto:${EMAIL}`}
+                href={`mailto:${EMAIL_PRIMARY}`}
                 className="underline underline-offset-2 hover:text-[var(--primary-blue)]"
               >
-                {EMAIL}
+                {EMAIL_PRIMARY}
               </a>
             </p>
           </section>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Instagram, Linkedin, Mail, MapPin, Check } from 'lucide-react';
+import { Instagram, Mail, MapPin, Check } from 'lucide-react';
 import { EMAIL_PRIMARY, EMAIL_SECONDARY, PHONE_DISPLAY, whatsappUrl } from '../lib/constants';
 
 function CopyEmail({ email }) {
@@ -38,9 +38,6 @@ const Footer = () => {
             <div className="flex space-x-4">
               <a href="https://www.instagram.com/guetrosaude/" target="_blank" rel="noreferrer" className="hover:text-[var(--primary-blue)] transition-colors text-white">
                 <Instagram size={24} />
-              </a>
-              <a href="https://www.linkedin.com/company/guetro" target="_blank" rel="noreferrer" className="hover:text-[var(--primary-blue)] transition-colors text-white">
-                <Linkedin size={24} />
               </a>
             </div>
           </div>
