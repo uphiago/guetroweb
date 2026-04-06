@@ -21,7 +21,7 @@ export default function TermosPage() {
           <section>
             <h2 className="mb-3 text-base font-semibold text-slate-900">1. Sobre este site</h2>
             <p>
-              Este site é operado pela <strong>Guetro Corretora de Seguros</strong>, CNPJ [CNPJ],
+              Este site é operado pela <strong>Guetro Corretora de Seguros</strong>, CNPJ 55.054.733/0001-09,
               corretora de seguros autorizada a operar no território nacional. Ao acessar e
               utilizar este site, você concorda com os presentes Termos de Uso.
             </p>

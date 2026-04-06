@@ -21,7 +21,7 @@ export default function PrivacidadePage() {
           <section>
             <h2 className="mb-3 text-base font-semibold text-slate-900">1. Controlador dos dados</h2>
             <p>
-              A <strong>Guetro Corretora de Seguros</strong>, CNPJ [CNPJ], é a controladora dos
+              A <strong>Guetro Corretora de Seguros</strong>, CNPJ 55.054.733/0001-09, é a controladora dos
               dados pessoais coletados neste site, nos termos da Lei Geral de Proteção de Dados
               (Lei nº 13.709/2018 — LGPD).
             </p>
