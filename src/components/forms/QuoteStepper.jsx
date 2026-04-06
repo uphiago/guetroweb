@@ -186,11 +186,28 @@ export default function QuoteStepper() {
         ages: stepTwoData.ages,
       });
       setSubmitStatus('success');
-    } catch {
+    } catch (error) {
+      const code = error && typeof error === 'object' ? error.code : null;
+      const requestId =
+        error && typeof error === 'object' ? error.requestId : null;
+
+      let uiMessage =
+        'Não foi possível enviar automaticamente. Tente novamente em instantes ou fale no WhatsApp.';
+
+      if (code === 'N8N_WEBHOOK_NOT_FOUND') {
+        uiMessage = 'Webhook n8n não encontrado ou workflow inativo.';
+      } else if (code === 'N8N_AUTH_FAILED') {
+        uiMessage = 'Falha de autenticação com o webhook n8n.';
+      } else if (code === 'UPSTREAM_TIMEOUT') {
+        uiMessage = 'O webhook demorou para responder. Tente novamente.';
+      }
+
+      if (requestId) {
+        uiMessage = `${uiMessage} Ref: ${requestId}`;
+      }
+
       setSubmitStatus('error');
-      setSubmitMessage(
-        'Não foi possível enviar automaticamente. Tente novamente em instantes ou fale no WhatsApp.'
-      );
+      setSubmitMessage(uiMessage);
     }
   }
 

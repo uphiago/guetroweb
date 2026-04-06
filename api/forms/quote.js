@@ -83,6 +83,30 @@ function log(level, event, meta = {}) {
   console.log(JSON.stringify(payload));
 }
 
+function mapUpstreamError(status, bodyPreview) {
+  const body = String(bodyPreview || '').toLowerCase();
+  if (
+    status === 404 ||
+    body.includes('not registered') ||
+    body.includes('webhook') && body.includes('not found')
+  ) {
+    return {
+      code: 'N8N_WEBHOOK_NOT_FOUND',
+      message: 'Webhook n8n não encontrado ou workflow inativo',
+    };
+  }
+  if (status === 401 || status === 403) {
+    return {
+      code: 'N8N_AUTH_FAILED',
+      message: 'Falha de autenticação no webhook n8n',
+    };
+  }
+  return {
+    code: 'UPSTREAM_ERROR',
+    message: 'Upstream webhook error',
+  };
+}
+
 function getWebhookConfig() {
   return {
     url:
@@ -224,6 +248,7 @@ export default async function handler(req, res) {
     const headers = { 'Content-Type': 'application/json' };
     if (webhook.secret) {
       headers['x-webhook-secret'] = webhook.secret;
+      headers.Authorization = `Bearer ${webhook.secret}`;
     }
 
     const response = await fetch(webhook.url, {
@@ -235,6 +260,7 @@ export default async function handler(req, res) {
 
     if (!response.ok) {
       const upstreamText = await response.text().catch(() => '');
+      const mapped = mapUpstreamError(response.status, upstreamText);
       log('error', 'forms.quote.upstream.error_response', {
         requestId,
         status: response.status,
@@ -243,8 +269,9 @@ export default async function handler(req, res) {
       });
       return res.status(502).json({
         ok: false,
-        message: 'Upstream webhook error',
-        code: 'UPSTREAM_ERROR',
+        message: mapped.message,
+        code: mapped.code,
+        upstreamStatus: response.status,
         requestId,
       });
     }
@@ -252,6 +279,7 @@ export default async function handler(req, res) {
     log('info', 'forms.quote.upstream.success', { requestId, status: response.status });
     return res.status(200).json({ ok: true, requestId });
   } catch (error) {
+    const isTimeout = error instanceof Error && error.name === 'AbortError';
     log('error', 'forms.quote.upstream.request_failed', {
       requestId,
       name: error instanceof Error ? error.name : 'UnknownError',
@@ -259,8 +287,8 @@ export default async function handler(req, res) {
     });
     return res.status(502).json({
       ok: false,
-      message: 'Webhook unavailable',
-      code: 'UPSTREAM_UNAVAILABLE',
+      message: isTimeout ? 'Timeout ao chamar webhook n8n' : 'Webhook unavailable',
+      code: isTimeout ? 'UPSTREAM_TIMEOUT' : 'UPSTREAM_UNAVAILABLE',
       requestId,
     });
   } finally {

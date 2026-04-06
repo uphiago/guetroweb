@@ -49,8 +49,20 @@ export async function submitQuoteRequest(payload) {
   }
 
   if (!response.ok) {
-    const details = await response.text().catch(() => '');
-    throw new Error(details || `api error (${response.status})`);
+    let parsed = null;
+    try {
+      parsed = await response.json();
+    } catch {
+      parsed = null;
+    }
+
+    const error = new Error(
+      parsed?.message || `api error (${response.status})`
+    );
+    error.code = parsed?.code || 'API_ERROR';
+    error.requestId = parsed?.requestId || null;
+    error.upstreamStatus = parsed?.upstreamStatus || null;
+    throw error;
   }
 
   return response
