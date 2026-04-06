@@ -35,7 +35,7 @@ const Hero = () => {
 
                         <div className="flex flex-col sm:flex-row gap-4">
                             <a
-                                href="#contact"
+                                href="/forms"
                                 className="inline-flex items-center justify-center px-8 py-4 bg-primary-blue text-white font-bold rounded-lg transition-all duration-300 hover:bg-blue-600 hover:-translate-y-1 shadow-lg shadow-blue-900/30"
                             >
                                 Fazer Cotação

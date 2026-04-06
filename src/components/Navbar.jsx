@@ -22,7 +22,7 @@ const Navbar = () => {
                     <a href="#about" className="font-medium hover:text-[var(--primary-blue)] transition-colors">Sobre</a>
                     <a href="#services" className="font-medium hover:text-[var(--primary-blue)] transition-colors">Serviços</a>
                     <a href="#testimonials" className="font-medium hover:text-[var(--primary-blue)] transition-colors">Depoimentos</a>
-                    <a href="#contact" className="btn btn-primary">
+                    <a href="/forms" className="btn btn-primary">
                         Fale Conosco
                     </a>
                 </div>
@@ -42,7 +42,7 @@ const Navbar = () => {
                         <a onClick={toggleMenu} href="#about" className="font-medium hover:text-[var(--primary-blue)]">Sobre</a>
                         <a onClick={toggleMenu} href="#services" className="font-medium hover:text-[var(--primary-blue)]">Serviços</a>
                         <a onClick={toggleMenu} href="#testimonials" className="font-medium hover:text-[var(--primary-blue)]">Depoimentos</a>
-                        <a onClick={toggleMenu} href="#contact" className="btn btn-primary w-full text-center">
+                        <a onClick={toggleMenu} href="/forms" className="btn btn-primary w-full text-center">
                             Fale Conosco
                         </a>
                     </div>
