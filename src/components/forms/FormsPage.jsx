@@ -24,10 +24,10 @@ export default function FormsPage() {
         </div>
       </div>
 
-      <footer className="border-t border-slate-200 bg-white/95 px-4 py-3 text-slate-600 backdrop-blur-sm">
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 text-xs md:flex-row md:items-center md:justify-between">
+      <footer className="border-t border-slate-200 bg-white/95 px-4 py-3 text-slate-700 backdrop-blur-sm">
+        <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 text-[0.95rem] md:flex-row md:items-center md:justify-between">
           <div className="text-center md:text-left">
-            <p className="font-semibold text-slate-700">Guetro Corretora de Seguros</p>
+            <p className="font-semibold text-slate-800">Guetro Corretora de Seguros</p>
             <p>Atendimento em todo o Brasil</p>
           </div>
 
@@ -51,7 +51,7 @@ export default function FormsPage() {
           </div>
         </div>
 
-        <div className="mx-auto mt-2 flex w-full max-w-6xl items-center justify-center gap-1 text-[11px] text-slate-500 md:justify-start">
+        <div className="mx-auto mt-2 flex w-full max-w-6xl items-center justify-center gap-1 text-[0.85rem] text-slate-600 md:justify-start">
           <MapPin size={13} />
           <span>© {new Date().getFullYear()} Guetro Corretora de Seguros</span>
         </div>

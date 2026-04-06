@@ -18,10 +18,10 @@ const WhatsAppButton = () => {
             <div
                 className={`mb-4 mr-2 bg-white text-primary-dark px-4 py-3 rounded-lg shadow-xl relative transition-all duration-500 ease-out transform ${showTooltip ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'} animate-bounce-subtle`}
             >
-                <div className="text-sm font-bold flex items-center justify-between gap-4">
+                <div className="text-base font-bold flex items-center justify-between gap-4">
                     <span>Faça uma cotação grátis! 👋</span>
                     <button onClick={() => setShowTooltip(false)} className="text-gray-400 hover:text-gray-600">
-                        <X size={14} />
+                        <X size={16} />
                     </button>
                 </div>
                 <div className="absolute bottom-0 right-6 translate-y-1/2 rotate-45 w-4 h-4 bg-white shadow-sm -z-10"></div>

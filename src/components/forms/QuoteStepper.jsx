@@ -58,7 +58,7 @@ const STEP_TWO_SCHEMA = z.object({
 });
 
 const INPUT_CLASS =
-  'mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3.5 text-base text-slate-900 outline-none transition-colors focus:border-[var(--primary-blue)] focus:ring-2 focus:ring-blue-100';
+  'mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3.5 text-[1.02rem] text-slate-900 placeholder:text-slate-500 outline-none transition-colors focus:border-[var(--primary-blue)] focus:ring-2 focus:ring-blue-100';
 
 function formatPhone(raw) {
   const digits = String(raw).replace(/\D/g, '').slice(0, 11);
@@ -216,7 +216,7 @@ export default function QuoteStepper() {
       <h1 className="text-balance text-4xl font-anta text-[var(--primary-dark)] md:text-5xl">
         Formulário de Cotação Guetro
       </h1>
-      <p className="mt-3 text-base leading-relaxed text-slate-600">
+      <p className="mt-3 text-[1.03rem] leading-relaxed text-slate-700">
         Preencha em 3 etapas para receber sua cotação com mais rapidez.
       </p>
 
@@ -232,7 +232,7 @@ export default function QuoteStepper() {
               key={label}
               aria-current={active ? 'step' : undefined}
               className={[
-                'flex h-12 items-center justify-center rounded-xl border px-2 py-2 text-center text-[11px] font-semibold leading-tight md:h-14 md:px-3 md:text-sm',
+                'flex h-12 items-center justify-center rounded-xl border px-2 py-2 text-center text-xs font-semibold leading-tight md:h-14 md:px-3 md:text-[0.95rem]',
                 done
                   ? 'border-green-600 bg-green-600 text-white'
                   : active
@@ -263,7 +263,7 @@ export default function QuoteStepper() {
         {step === 1 && (
           <form className="space-y-5" onSubmit={stepOneForm.handleSubmit(onSubmitStepOne)}>
             <div>
-              <label htmlFor="fullName" className="text-base font-semibold text-slate-800">
+              <label htmlFor="fullName" className="text-[1.03rem] font-semibold text-slate-900">
                 Nome completo
               </label>
               <input
@@ -274,11 +274,11 @@ export default function QuoteStepper() {
                 aria-invalid={Boolean(s1Errors.fullName)}
                 {...stepOneForm.register('fullName')}
               />
-              <p className="mt-1 min-h-5 text-sm text-red-600">{s1Errors.fullName?.message ?? ''}</p>
+              <p className="mt-1 min-h-5 text-[0.95rem] text-red-700">{s1Errors.fullName?.message ?? ''}</p>
             </div>
 
             <div>
-              <label htmlFor="phone" className="text-base font-semibold text-slate-800">
+              <label htmlFor="phone" className="text-[1.03rem] font-semibold text-slate-900">
                 Telefone
               </label>
               <input
@@ -295,11 +295,11 @@ export default function QuoteStepper() {
                   phoneField.onChange(event);
                 }}
               />
-              <p className="mt-1 min-h-5 text-sm text-red-600">{s1Errors.phone?.message ?? ''}</p>
+              <p className="mt-1 min-h-5 text-[0.95rem] text-red-700">{s1Errors.phone?.message ?? ''}</p>
             </div>
 
             <div>
-              <label htmlFor="email" className="text-base font-semibold text-slate-800">
+              <label htmlFor="email" className="text-[1.03rem] font-semibold text-slate-900">
                 E-mail
               </label>
               <input
@@ -311,10 +311,10 @@ export default function QuoteStepper() {
                 aria-invalid={Boolean(s1Errors.email)}
                 {...stepOneForm.register('email')}
               />
-              <p className="mt-1 min-h-5 text-sm text-red-600">{s1Errors.email?.message ?? ''}</p>
+              <p className="mt-1 min-h-5 text-[0.95rem] text-red-700">{s1Errors.email?.message ?? ''}</p>
             </div>
 
-            <label className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white p-3 text-sm text-slate-700">
+            <label className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white p-3 text-[0.98rem] text-slate-800">
               <input
                 type="checkbox"
                 className="mt-1 h-4 w-4 cursor-pointer rounded border-slate-300 accent-[var(--primary-blue)]"
@@ -324,7 +324,7 @@ export default function QuoteStepper() {
                 Declaro que li e concordo com os Termos e com a Política de Privacidade da Guetro.
               </span>
             </label>
-            <p className="min-h-5 text-sm text-red-600">{s1Errors.acceptedTerms?.message ?? ''}</p>
+            <p className="min-h-5 text-[0.95rem] text-red-700">{s1Errors.acceptedTerms?.message ?? ''}</p>
 
             <button
               type="submit"
@@ -338,10 +338,10 @@ export default function QuoteStepper() {
         {step === 2 && (
           <form className="space-y-5" onSubmit={stepTwoForm.handleSubmit(onSubmitStepTwo)}>
             <div className="rounded-2xl border border-slate-200 bg-white p-4">
-              <label className="text-base font-semibold text-slate-800">
+              <label className="text-[1.03rem] font-semibold text-slate-900">
                 Quantas pessoas serão incluídas no plano?
               </label>
-              <p className="mt-1 text-sm leading-relaxed text-slate-600">
+              <p className="mt-1 text-[0.95rem] leading-relaxed text-slate-700">
                 Inclua titulares e dependentes para cotarmos corretamente.
               </p>
               <div className="mt-3 flex items-center gap-4">
@@ -363,15 +363,15 @@ export default function QuoteStepper() {
                 >
                   +
                 </button>
-                <span className="text-sm text-slate-600">
+                <span className="text-[0.95rem] text-slate-700">
                   {personCount === 1 ? '1 pessoa' : `${personCount} pessoas`}
                 </span>
               </div>
             </div>
 
             <div className="rounded-2xl border border-slate-200 bg-white p-4">
-              <label className="text-base font-semibold text-slate-800">Qual a idade de cada pessoa?</label>
-              <p className="mt-1 text-sm leading-relaxed text-slate-600">
+              <label className="text-[1.03rem] font-semibold text-slate-900">Qual a idade de cada pessoa?</label>
+              <p className="mt-1 text-[0.95rem] leading-relaxed text-slate-700">
                 A idade influencia diretamente no valor da mensalidade.
               </p>
               <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
@@ -385,15 +385,15 @@ export default function QuoteStepper() {
                       onChange={(event) => updateAge(index, event.target.value)}
                       className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-base text-slate-900 outline-none transition-colors focus:border-[var(--primary-blue)] focus:ring-2 focus:ring-blue-100"
                     />
-                    <span className="shrink-0 text-sm text-slate-600">anos</span>
+                    <span className="shrink-0 text-[0.95rem] text-slate-700">anos</span>
                   </div>
                 ))}
               </div>
-              <p className="mt-1 min-h-5 text-sm text-red-600">{ageError}</p>
+              <p className="mt-1 min-h-5 text-[0.95rem] text-red-700">{ageError}</p>
             </div>
 
             <fieldset className="rounded-2xl border border-slate-200 bg-white p-4">
-              <legend className="px-1 text-base font-semibold text-slate-800">Modalidade</legend>
+              <legend className="px-1 text-[1.03rem] font-semibold text-slate-900">Modalidade</legend>
               <div className="mt-3 grid gap-3 md:grid-cols-2">
                 {MODALITIES.map((item) => (
                   <label
@@ -406,12 +406,12 @@ export default function QuoteStepper() {
                     ].join(' ')}
                   >
                     <input type="radio" value={item.value} className="sr-only" {...stepTwoForm.register('modality')} />
-                    <p className="text-base font-semibold text-slate-800">{item.title}</p>
-                    <p className="mt-1.5 text-sm leading-relaxed text-slate-600">{item.description}</p>
+                    <p className="text-[1.01rem] font-semibold text-slate-900">{item.title}</p>
+                    <p className="mt-1.5 text-[0.95rem] leading-relaxed text-slate-700">{item.description}</p>
                   </label>
                 ))}
               </div>
-              <p className="mt-2 min-h-5 text-sm text-red-600">{stepTwoForm.formState.errors.modality?.message ?? ''}</p>
+              <p className="mt-2 min-h-5 text-[0.95rem] text-red-700">{stepTwoForm.formState.errors.modality?.message ?? ''}</p>
             </fieldset>
 
             <div className="flex flex-wrap items-center gap-3">
@@ -442,7 +442,7 @@ export default function QuoteStepper() {
               </div>
               <div>
                 <h2 className="text-2xl font-semibold text-slate-800">Solicitação enviada!</h2>
-                <p className="mt-2 max-w-sm text-base leading-relaxed text-slate-600">
+                <p className="mt-2 max-w-sm text-[1.02rem] leading-relaxed text-slate-700">
                   Nosso time retornará em até 24h úteis com as melhores opções para o seu perfil.
                 </p>
               </div>
@@ -464,7 +464,7 @@ export default function QuoteStepper() {
             </div>
           ) : (
             <div className="space-y-5">
-              <div className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-4 text-base text-slate-700 md:grid-cols-2">
+              <div className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-4 text-[1.01rem] text-slate-800 md:grid-cols-2">
                 <p>
                   <strong>Nome:</strong> {stepOneData.fullName}
                 </p>
@@ -485,7 +485,7 @@ export default function QuoteStepper() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-blue-200 bg-blue-50 p-4 text-base text-slate-700">
+              <div className="rounded-2xl border border-blue-200 bg-blue-50 p-4 text-[1.01rem] text-slate-800">
                 Após a solicitação, nossa equipe entrará em contato via WhatsApp em até 24h úteis.
               </div>
 
@@ -509,7 +509,7 @@ export default function QuoteStepper() {
               </div>
 
               {submitStatus === 'error' && (
-                <p role="alert" aria-live="polite" className="text-base text-red-600">
+                <p role="alert" aria-live="polite" className="text-[1.01rem] text-red-700">
                   {submitMessage}
                 </p>
               )}
