@@ -57,6 +57,46 @@ function setResponseHeaders(res) {
   res.setHeader('X-Content-Type-Options', 'nosniff');
 }
 
+function getRequestId(req) {
+  const headerRequestId = req.headers['x-request-id'];
+  if (typeof headerRequestId === 'string' && headerRequestId.length > 0) {
+    return headerRequestId;
+  }
+  const vercelId = req.headers['x-vercel-id'];
+  if (typeof vercelId === 'string' && vercelId.length > 0) {
+    return vercelId;
+  }
+  return `quote_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+}
+
+function log(level, event, meta = {}) {
+  const payload = {
+    timestamp: new Date().toISOString(),
+    level,
+    event,
+    ...meta,
+  };
+  if (level === 'error') {
+    console.error(JSON.stringify(payload));
+    return;
+  }
+  console.log(JSON.stringify(payload));
+}
+
+function getWebhookConfig() {
+  return {
+    url:
+      process.env.N8N_WEBHOOK_URL ||
+      process.env.VITE_N8N_WEBHOOK_URL ||
+      process.env.VITE_FORMS_WEBHOOK_URL,
+    secret:
+      process.env.N8N_WEBHOOK_SECRET ||
+      process.env.VITE_N8N_WEBHOOK_SECRET ||
+      process.env.VITE_FORMS_WEBHOOK_TOKEN,
+    timeoutMs: Number(process.env.N8N_WEBHOOK_TIMEOUT_MS || 15000),
+  };
+}
+
 function maybeSetCorsHeaders(req, res, allowedOrigins) {
   const origin = req.headers.origin;
   if (!origin) return;
@@ -75,24 +115,53 @@ function methodNotAllowed(res) {
 export default async function handler(req, res) {
   setResponseHeaders(res);
 
+  const requestId = getRequestId(req);
   const allowedOrigins = parseAllowedOrigins();
   maybeSetCorsHeaders(req, res, allowedOrigins);
+  const origin = req.headers.origin || null;
+
+  log('info', 'forms.quote.request.received', {
+    requestId,
+    method: req.method,
+    origin,
+    path: '/api/forms/quote',
+  });
 
   if (req.method === 'OPTIONS') {
+    log('info', 'forms.quote.request.options', { requestId });
     return res.status(204).end();
   }
 
   if (req.method !== 'POST') {
+    log('error', 'forms.quote.request.method_not_allowed', {
+      requestId,
+      method: req.method,
+    });
     return methodNotAllowed(res);
   }
 
-  const origin = req.headers.origin;
   if (allowedOrigins.length > 0 && origin && !allowedOrigins.includes(origin)) {
+    log('error', 'forms.quote.request.forbidden_origin', {
+      requestId,
+      origin,
+      allowedOrigins,
+    });
     return res.status(403).json({ ok: false, message: 'Forbidden origin' });
   }
 
-  if (!process.env.N8N_WEBHOOK_URL) {
-    return res.status(500).json({ ok: false, message: 'Server configuration error' });
+  const webhook = getWebhookConfig();
+  if (!webhook.url) {
+    log('error', 'forms.quote.config.missing_webhook_url', {
+      requestId,
+      hasN8NWebhookUrl: Boolean(process.env.N8N_WEBHOOK_URL),
+      hasLegacyViteWebhookUrl: Boolean(process.env.VITE_N8N_WEBHOOK_URL),
+    });
+    return res.status(500).json({
+      ok: false,
+      message: 'Server configuration error',
+      code: 'CONFIG_MISSING_WEBHOOK_URL',
+      requestId,
+    });
   }
 
   let parsedInput;
@@ -100,6 +169,7 @@ export default async function handler(req, res) {
     const body = parseJsonBody(req);
     parsedInput = REQUEST_SCHEMA.parse(body);
   } catch {
+    log('error', 'forms.quote.validation.invalid_payload', { requestId });
     return res.status(400).json({ ok: false, message: 'Invalid payload' });
   }
 
@@ -109,10 +179,16 @@ export default async function handler(req, res) {
     normalizedPhone = normalizePhone(parsedInput.phone);
     normalizedAges = normalizeAges(parsedInput.ages);
   } catch {
+    log('error', 'forms.quote.validation.invalid_fields', { requestId });
     return res.status(400).json({ ok: false, message: 'Invalid fields' });
   }
 
   if (normalizedAges.length !== parsedInput.personCount) {
+    log('error', 'forms.quote.validation.ages_count_mismatch', {
+      requestId,
+      personCount: parsedInput.personCount,
+      agesCount: normalizedAges.length,
+    });
     return res.status(400).json({ ok: false, message: 'Ages count mismatch' });
   }
 
@@ -141,17 +217,16 @@ export default async function handler(req, res) {
     },
   };
 
-  const timeoutMs = Number(process.env.N8N_WEBHOOK_TIMEOUT_MS || 15000);
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  const timeout = setTimeout(() => controller.abort(), webhook.timeoutMs);
 
   try {
     const headers = { 'Content-Type': 'application/json' };
-    if (process.env.N8N_WEBHOOK_SECRET) {
-      headers['x-webhook-secret'] = process.env.N8N_WEBHOOK_SECRET;
+    if (webhook.secret) {
+      headers['x-webhook-secret'] = webhook.secret;
     }
 
-    const response = await fetch(process.env.N8N_WEBHOOK_URL, {
+    const response = await fetch(webhook.url, {
       method: 'POST',
       headers,
       body: JSON.stringify(n8nPayload),
@@ -159,12 +234,35 @@ export default async function handler(req, res) {
     });
 
     if (!response.ok) {
-      return res.status(502).json({ ok: false, message: 'Upstream webhook error' });
+      const upstreamText = await response.text().catch(() => '');
+      log('error', 'forms.quote.upstream.error_response', {
+        requestId,
+        status: response.status,
+        statusText: response.statusText,
+        bodyPreview: upstreamText.slice(0, 500),
+      });
+      return res.status(502).json({
+        ok: false,
+        message: 'Upstream webhook error',
+        code: 'UPSTREAM_ERROR',
+        requestId,
+      });
     }
 
-    return res.status(200).json({ ok: true });
-  } catch {
-    return res.status(502).json({ ok: false, message: 'Webhook unavailable' });
+    log('info', 'forms.quote.upstream.success', { requestId, status: response.status });
+    return res.status(200).json({ ok: true, requestId });
+  } catch (error) {
+    log('error', 'forms.quote.upstream.request_failed', {
+      requestId,
+      name: error instanceof Error ? error.name : 'UnknownError',
+      message: error instanceof Error ? error.message : String(error),
+    });
+    return res.status(502).json({
+      ok: false,
+      message: 'Webhook unavailable',
+      code: 'UPSTREAM_UNAVAILABLE',
+      requestId,
+    });
   } finally {
     clearTimeout(timeout);
   }

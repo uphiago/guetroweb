@@ -195,7 +195,7 @@ export default function QuoteStepper() {
   }
 
   return (
-    <section className="w-full max-w-4xl rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-900/10 md:p-9">
+    <section className="w-full max-w-4xl rounded-3xl border border-slate-200 bg-white p-5 shadow-xl shadow-slate-900/10 md:h-full md:max-h-[calc(100vh-190px)] md:p-7">
       <h1 className="text-balance text-4xl font-anta text-[var(--primary-dark)] md:text-5xl">
         Formulário de Cotação Guetro
       </h1>
@@ -203,7 +203,7 @@ export default function QuoteStepper() {
         Preencha em 3 etapas para receber sua cotação com mais rapidez.
       </p>
 
-      <div className="mt-8 grid grid-cols-3 gap-2">
+      <div className="mt-6 grid grid-cols-3 gap-2">
         {STEP_LABELS.map((label, index) => {
           const n = index + 1;
           const allDone = submitStatus === 'success';
@@ -215,7 +215,7 @@ export default function QuoteStepper() {
               key={label}
               aria-current={active ? 'step' : undefined}
               className={[
-                'flex h-14 items-center justify-center rounded-xl border px-3 py-2 text-center text-xs font-semibold md:text-sm',
+                'flex h-12 items-center justify-center rounded-xl border px-2 py-2 text-center text-[11px] font-semibold leading-tight md:h-14 md:px-3 md:text-sm',
                 done
                   ? 'border-green-600 bg-green-600 text-white'
                   : active
@@ -242,7 +242,7 @@ export default function QuoteStepper() {
         />
       </div>
 
-      <div className="mt-6 min-h-[520px] rounded-3xl border border-slate-200 bg-slate-50 p-5 md:p-7">
+      <div className="mt-4 rounded-3xl border border-slate-200 bg-slate-50 p-4 md:mt-5 md:p-5">
         {step === 1 && (
           <form className="space-y-5" onSubmit={stepOneForm.handleSubmit(onSubmitStepOne)}>
             <div>
