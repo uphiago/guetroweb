@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Mail, MapPin, Check } from 'lucide-react';
 import QuoteStepper from './QuoteStepper';
 import WhatsAppButton from '../WhatsAppButton';
-import { EMAIL_PRIMARY, EMAIL_SECONDARY, PHONE_DISPLAY, whatsappUrl } from '../../lib/constants';
+import { EMAIL_PRIMARY, PHONE_DISPLAY, whatsappUrl } from '../../lib/constants';
 
 function CopyEmail({ email }) {
   const [copied, setCopied] = useState(false);
@@ -70,7 +70,6 @@ export default function FormsPage() {
               <span>{PHONE_DISPLAY}</span>
             </a>
             <CopyEmail email={EMAIL_PRIMARY} />
-            <CopyEmail email={EMAIL_SECONDARY} />
           </div>
         </div>
 

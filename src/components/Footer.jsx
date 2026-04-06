@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Instagram, Mail, MapPin, Check } from 'lucide-react';
-import { EMAIL_PRIMARY, EMAIL_SECONDARY, PHONE_DISPLAY, whatsappUrl } from '../lib/constants';
+import { EMAIL_PRIMARY, PHONE_DISPLAY, whatsappUrl } from '../lib/constants';
 
 function CopyEmail({ email }) {
   const [copied, setCopied] = useState(false);
@@ -63,9 +63,6 @@ const Footer = () => {
               </li>
               <li>
                 <CopyEmail email={EMAIL_PRIMARY} />
-              </li>
-              <li>
-                <CopyEmail email={EMAIL_SECONDARY} />
               </li>
             </ul>
           </div>
