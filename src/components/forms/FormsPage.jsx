@@ -54,7 +54,10 @@ export default function FormsPage() {
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 text-[0.95rem] md:flex-row md:items-center md:justify-between">
           <div className="text-center md:text-left">
             <p className="font-semibold text-slate-800">Guetro Corretora de Seguros</p>
-            <p>Atendimento em todo o Brasil</p>
+            <p className="inline-flex items-center gap-1">
+              <MapPin size={13} />
+              Atendimento em todo o Brasil
+            </p>
           </div>
 
           <div className="flex flex-col items-center gap-1 md:items-end">
@@ -72,10 +75,7 @@ export default function FormsPage() {
         </div>
 
         <div className="mx-auto mt-2 flex w-full max-w-6xl flex-col items-center gap-1.5 text-[0.85rem] text-slate-600 md:flex-row md:justify-between">
-          <div className="flex items-center gap-1">
-            <MapPin size={13} />
-            <span>© {new Date().getFullYear()} Guetro Corretora de Seguros</span>
-          </div>
+          <span>© {new Date().getFullYear()} Guetro Corretora de Seguros</span>
           <div className="flex gap-3">
             <a href="/termos" className="transition-colors hover:text-slate-800">Termos de Uso</a>
             <a href="/privacidade" className="transition-colors hover:text-slate-800">Política de Privacidade</a>
