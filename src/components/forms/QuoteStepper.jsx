@@ -212,7 +212,7 @@ export default function QuoteStepper() {
   }
 
   return (
-    <section className="w-full max-w-4xl rounded-3xl border border-slate-200 bg-white p-5 shadow-xl shadow-slate-900/10 md:h-full md:max-h-[calc(100vh-190px)] md:p-7">
+    <section className="w-full max-w-4xl rounded-3xl border border-slate-200 bg-white p-5 shadow-xl shadow-slate-900/10 md:p-7">
       <h1 className="text-balance text-4xl font-anta text-[var(--primary-dark)] md:text-5xl">
         Formulário de Cotação Guetro
       </h1>

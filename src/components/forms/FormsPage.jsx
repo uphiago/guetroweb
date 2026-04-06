@@ -43,8 +43,8 @@ export default function FormsPage() {
           </a>
         </div>
 
-        {/* Form centered */}
-        <div className="mx-auto flex w-full max-w-6xl flex-1 items-start justify-center pb-6 md:items-center md:pb-8">
+        {/* Form */}
+        <div className="mx-auto w-full max-w-4xl pb-6 md:pb-8">
           <QuoteStepper />
         </div>
       </div>
