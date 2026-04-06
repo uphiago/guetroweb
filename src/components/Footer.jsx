@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Instagram, Linkedin, Mail, MapPin, Check } from 'lucide-react';
 
-const EMAIL = 'diorande.contro@guetro.com.br';
+const EMAIL = 'guetroseguros@gmail.com';
 
 function CopyEmail() {
   const [copied, setCopied] = useState(false);

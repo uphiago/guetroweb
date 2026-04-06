@@ -1,6 +1,6 @@
 import React from 'react';
 
-const EMAIL = 'diorande.contro@guetro.com.br';
+const EMAIL = 'guetroseguros@gmail.com';
 const UPDATED_AT = '6 de abril de 2026';
 
 export default function PrivacidadePage() {

@@ -3,7 +3,7 @@ import { Mail, MapPin, Check } from 'lucide-react';
 import QuoteStepper from './QuoteStepper';
 import WhatsAppButton from '../WhatsAppButton';
 
-const EMAIL = 'diorande.contro@guetro.com.br';
+const EMAIL = 'guetroseguros@gmail.com';
 
 function CopyEmail() {
   const [copied, setCopied] = useState(false);
