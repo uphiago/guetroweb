@@ -321,7 +321,11 @@ export default function QuoteStepper() {
                 {...stepOneForm.register('acceptedTerms')}
               />
               <span className="leading-relaxed">
-                Declaro que li e concordo com os Termos e com a Política de Privacidade da Guetro.
+                Declaro que li e concordo com os{' '}
+                <a href="/termos" target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-slate-900">Termos de Uso</a>
+                {' '}e com a{' '}
+                <a href="/privacidade" target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-slate-900">Política de Privacidade</a>
+                {' '}da Guetro.
               </span>
             </label>
             <p className="min-h-5 text-[0.95rem] text-red-700">{s1Errors.acceptedTerms?.message ?? ''}</p>

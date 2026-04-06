@@ -7,20 +7,29 @@ import SocialProof from './components/SocialProof';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import FormsPage from './components/forms/FormsPage';
+import TermosPage from './components/TermosPage';
+import PrivacidadePage from './components/PrivacidadePage';
 
 import { Analytics } from "@vercel/analytics/react"
 
 function App() {
   const currentPath = window.location.pathname.replace(/\/+$/, '') || '/';
-  const isFormsRoute = currentPath === '/forms';
 
-  if (isFormsRoute) {
+  if (currentPath === '/forms') {
     return (
       <>
         <FormsPage />
         <Analytics />
       </>
     );
+  }
+
+  if (currentPath === '/termos') {
+    return <TermosPage />;
+  }
+
+  if (currentPath === '/privacidade') {
+    return <PrivacidadePage />;
   }
 
   return (

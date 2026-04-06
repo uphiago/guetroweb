@@ -1,5 +1,27 @@
-import React from 'react';
-import { Instagram, Linkedin, Mail, MapPin } from 'lucide-react';
+import React, { useState } from 'react';
+import { Instagram, Linkedin, Mail, MapPin, Check } from 'lucide-react';
+
+const EMAIL = 'diorande.contro@guetro.com.br';
+
+function CopyEmail() {
+  const [copied, setCopied] = useState(false);
+  const handleCopy = () => {
+    navigator.clipboard.writeText(EMAIL).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
+  return (
+    <button
+      onClick={handleCopy}
+      title="Clique para copiar o e-mail"
+      className="flex items-center gap-3 text-gray-300 transition-colors hover:text-white"
+    >
+      {copied ? <Check className="shrink-0 text-green-400" size={20} /> : <Mail className="text-[var(--primary-blue)] shrink-0" size={20} />}
+      <span>{copied ? 'E-mail copiado!' : EMAIL}</span>
+    </button>
+  );
+}
 
 const Footer = () => {
     return (
@@ -42,17 +64,18 @@ const Footer = () => {
                                 </a>
                             </li>
                             <li className="flex items-center gap-3">
-                                <Mail className="text-[var(--primary-blue)] shrink-0" size={20} />
-                                <a href="mailto:diorande.contro@guetro.com.br" className="text-gray-300 hover:text-white transition-colors">
-                                    diorande.contro@guetro.com.br
-                                </a>
+                                <CopyEmail />
                             </li>
                         </ul>
                     </div>
                 </div>
 
-                <div className="border-t border-gray-700 pt-8 flex text-center justify-center text-gray-500 font-['Afacad'] text-sm">
+                <div className="border-t border-gray-700 pt-8 flex flex-col items-center gap-2 text-center text-gray-500 font-['Afacad'] text-sm md:flex-row md:justify-between">
                     <p>&copy; {new Date().getFullYear()} Guetro Corretora de Seguros.</p>
+                    <div className="flex gap-4">
+                        <a href="/termos" className="hover:text-gray-300 transition-colors">Termos de Uso</a>
+                        <a href="/privacidade" className="hover:text-gray-300 transition-colors">Política de Privacidade</a>
+                    </div>
                 </div>
             </div>
         </footer>
