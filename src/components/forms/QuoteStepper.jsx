@@ -217,12 +217,12 @@ export default function QuoteStepper() {
   }
 
   return (
-    <section className="flex h-full min-h-0 w-full max-w-4xl flex-col rounded-3xl border border-slate-200 bg-white p-4 shadow-xl shadow-slate-900/10 md:p-6">
-      <h1 ref={headingRef} tabIndex={-1} className="shrink-0 text-balance text-2xl font-anta text-[var(--primary-dark)] outline-none md:text-3xl">
+    <section className="w-full max-w-4xl rounded-3xl border border-slate-200 bg-white p-4 shadow-xl shadow-slate-900/10 md:flex md:h-full md:min-h-0 md:flex-col md:p-6">
+      <h1 ref={headingRef} tabIndex={-1} className="text-balance text-2xl font-anta text-[var(--primary-dark)] outline-none md:shrink-0 md:text-3xl">
         Formulário de Cotação Guetro
       </h1>
 
-      <div className="mt-3 shrink-0 grid grid-cols-3 gap-2">
+      <div className="mt-3 grid grid-cols-3 gap-2 md:shrink-0">
         {STEP_LABELS.map((label, index) => {
           const n = index + 1;
           const allDone = submitStatus === 'success';
@@ -249,7 +249,7 @@ export default function QuoteStepper() {
         })}
       </div>
 
-      <div className="mt-2 shrink-0 h-1 overflow-hidden rounded-full bg-slate-200">
+      <div className="mt-2 h-1 overflow-hidden rounded-full bg-slate-200 md:shrink-0">
         <div
           className="h-full rounded-full bg-[var(--primary-blue)] transition-all duration-300 ease-out"
           style={{
@@ -261,7 +261,7 @@ export default function QuoteStepper() {
         />
       </div>
 
-      <div className="mt-3 rounded-3xl border border-slate-200 bg-slate-50 p-3 md:p-4">
+      <div className="mt-3 rounded-3xl border border-slate-200 bg-slate-50 p-3 md:min-h-0 md:flex-1 md:p-4">
         {step === 1 && (
           <form className="space-y-3" onSubmit={stepOneForm.handleSubmit(onSubmitStepOne)}>
             <div>
