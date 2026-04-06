@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
-import { Star, ExternalLink } from 'lucide-react';
+import { whatsappUrl } from '../lib/constants';
 
 const SocialProof = () => {
-    const whatsappUrl = "https://api.whatsapp.com/send/?phone=5511911700112&text=Olá%2C+gostaria+de+mais+informações.&type=phone_number&app_absent=0";
 
     // Load Elfsight script
     useEffect(() => {
@@ -40,7 +39,7 @@ const SocialProof = () => {
                 {/* WhatsApp CTA */}
                 <div className="flex justify-center">
                     <a
-                        href={whatsappUrl}
+                        href={whatsappUrl()}
                         target="_blank"
                         rel="noreferrer"
                         className="flex items-center gap-4 bg-[#25D366] hover:bg-[#20bd5a] text-white px-8 py-5 rounded-full shadow-lg shadow-green-900/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl group"

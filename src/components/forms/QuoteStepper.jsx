@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { Loader2 } from 'lucide-react';
 import { submitQuoteRequest } from '../../lib/quoteApi';
+import { whatsappUrl } from '../../lib/constants';
 
 const STEP_LABELS = ['Sobre você', 'Sobre o plano', 'Solicitar Cotação'];
 
@@ -82,7 +84,8 @@ export default function QuoteStepper() {
   const [submitMessage, setSubmitMessage] = useState('');
   const [personCount, setPersonCount] = useState(1);
   const [ages, setAges] = useState(['']);
-  const [ageError, setAgeError] = useState('');
+  const [ageErrors, setAgeErrors] = useState([]);
+  const headingRef = useRef(null);
 
   const stepOneForm = useForm({
     resolver: zodResolver(STEP_ONE_SCHEMA),
@@ -104,6 +107,10 @@ export default function QuoteStepper() {
   const s1Errors = stepOneForm.formState.errors;
   const phoneField = stepOneForm.register('phone');
 
+  useEffect(() => {
+    headingRef.current?.focus();
+  }, [step]);
+
   function resetAll() {
     setStep(1);
     setStepOneData(null);
@@ -112,7 +119,7 @@ export default function QuoteStepper() {
     setSubmitMessage('');
     setPersonCount(1);
     setAges(['']);
-    setAgeError('');
+    setAgeErrors([]);
     stepOneForm.reset();
     stepTwoForm.reset();
   }
@@ -121,18 +128,19 @@ export default function QuoteStepper() {
     const next = Math.max(1, personCount + delta);
     setPersonCount(next);
     setAges((prev) => {
-      if (next > prev.length) {
-        return [...prev, ...Array(next - prev.length).fill('')];
-      }
+      if (next > prev.length) return [...prev, ...Array(next - prev.length).fill('')];
       return prev.slice(0, next);
     });
-    setAgeError('');
+    setAgeErrors((prev) => {
+      if (next > prev.length) return [...prev, ...Array(next - prev.length).fill('')];
+      return prev.slice(0, next);
+    });
   }
 
   function updateAge(index, value) {
     const digits = value.replace(/\D/g, '').slice(0, 3);
     setAges((prev) => prev.map((age, i) => (i === index ? digits : age)));
-    setAgeError('');
+    setAgeErrors((prev) => prev.map((err, i) => (i === index ? '' : err)));
   }
 
   function onSubmitStepOne(values) {
@@ -141,18 +149,15 @@ export default function QuoteStepper() {
   }
 
   function onSubmitStepTwo(values) {
-    if (ages.some((age) => age.trim() === '')) {
-      setAgeError('Informe a idade de todas as pessoas.');
-      return;
-    }
-
-    const invalidAge = ages.some((age) => {
+    const errors = ages.map((age) => {
+      if (age.trim() === '') return 'Informe a idade.';
       const n = Number(age);
-      return Number.isNaN(n) || n < 0 || n > 110;
+      if (Number.isNaN(n) || n < 0 || n > 110) return 'Entre 0 e 110.';
+      return '';
     });
 
-    if (invalidAge) {
-      setAgeError('Idades devem estar entre 0 e 110 anos.');
+    if (errors.some(Boolean)) {
+      setAgeErrors(errors);
       return;
     }
 
@@ -213,7 +218,7 @@ export default function QuoteStepper() {
 
   return (
     <section className="w-full max-w-4xl rounded-3xl border border-slate-200 bg-white p-5 shadow-xl shadow-slate-900/10 md:p-7">
-      <h1 className="text-balance text-4xl font-anta text-[var(--primary-dark)] md:text-5xl">
+      <h1 ref={headingRef} tabIndex={-1} className="text-balance text-4xl font-anta text-[var(--primary-dark)] outline-none md:text-5xl">
         Formulário de Cotação Guetro
       </h1>
       <p className="mt-3 text-[1.03rem] leading-relaxed text-slate-700">
@@ -380,20 +385,31 @@ export default function QuoteStepper() {
               </p>
               <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
                 {ages.map((age, index) => (
-                  <div key={`${index}-age`} className="flex items-center gap-2">
-                    <input
-                      type="text"
-                      inputMode="numeric"
-                      placeholder="Idade"
-                      value={age}
-                      onChange={(event) => updateAge(index, event.target.value)}
-                      className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-base text-slate-900 outline-none transition-colors focus:border-[var(--primary-blue)] focus:ring-2 focus:ring-blue-100"
-                    />
-                    <span className="shrink-0 text-[0.95rem] text-slate-700">anos</span>
+                  <div key={`${index}-age`} className="flex flex-col gap-1">
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="text"
+                        inputMode="numeric"
+                        placeholder="Idade"
+                        value={age}
+                        onChange={(event) => updateAge(index, event.target.value)}
+                        aria-invalid={Boolean(ageErrors[index])}
+                        aria-label={`Idade da pessoa ${index + 1}`}
+                        className={[
+                          'w-full rounded-xl border bg-white px-3 py-2.5 text-base text-slate-900 outline-none transition-colors focus:ring-2',
+                          ageErrors[index]
+                            ? 'border-red-400 focus:border-red-400 focus:ring-red-100'
+                            : 'border-slate-300 focus:border-[var(--primary-blue)] focus:ring-blue-100',
+                        ].join(' ')}
+                      />
+                      <span className="shrink-0 text-[0.95rem] text-slate-700">anos</span>
+                    </div>
+                    {ageErrors[index] && (
+                      <p className="text-xs text-red-700">{ageErrors[index]}</p>
+                    )}
                   </div>
                 ))}
               </div>
-              <p className="mt-1 min-h-5 text-[0.95rem] text-red-700">{ageError}</p>
             </div>
 
             <fieldset className="rounded-2xl border border-slate-200 bg-white p-4">
@@ -451,7 +467,7 @@ export default function QuoteStepper() {
                 </p>
               </div>
               <a
-                href="https://api.whatsapp.com/send/?phone=5511989155668&text=Olá%2C+acabei+de+preencher+o+formulário+de+cotação.&type=phone_number&app_absent=0"
+                href={whatsappUrl('Olá%2C+acabei+de+preencher+o+formulário+de+cotação.')}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center justify-center rounded-xl border border-green-600 bg-green-50 px-6 py-3.5 text-base font-semibold text-green-700 transition-colors hover:bg-green-100"
@@ -506,9 +522,11 @@ export default function QuoteStepper() {
                   type="button"
                   onClick={handleQuoteRequest}
                   disabled={submitStatus === 'loading'}
-                  className="inline-flex min-w-44 items-center justify-center rounded-xl bg-[var(--primary-blue)] px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="inline-flex min-w-44 items-center justify-center gap-2 rounded-xl bg-[var(--primary-blue)] px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                  {submitStatus === 'loading' ? 'Enviando...' : 'Solicitar cotação'}
+                  {submitStatus === 'loading' ? (
+                    <><Loader2 size={18} className="animate-spin" /> Enviando...</>
+                  ) : submitStatus === 'error' ? 'Tentar novamente' : 'Solicitar cotação'}
                 </button>
               </div>
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
+import { whatsappUrl } from '../lib/constants';
 
 const WhatsAppButton = () => {
     const [showTooltip, setShowTooltip] = useState(false);
@@ -41,7 +42,7 @@ const WhatsAppButton = () => {
             </div>
 
             <a
-                href="https://api.whatsapp.com/send/?phone=5511989155668&text=Olá%2C+gostaria+de+mais+informações.&type=phone_number&app_absent=0"
+                href={whatsappUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="transition-transform duration-300 hover:scale-110 flex items-center justify-center"

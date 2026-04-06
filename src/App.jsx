@@ -9,6 +9,7 @@ import WhatsAppButton from './components/WhatsAppButton';
 import FormsPage from './components/forms/FormsPage';
 import TermosPage from './components/TermosPage';
 import PrivacidadePage from './components/PrivacidadePage';
+import CookieBanner from './components/CookieBanner';
 
 import { Analytics } from "@vercel/analytics/react"
 
@@ -45,6 +46,7 @@ function App() {
         <Footer />
       </div>
       <WhatsAppButton />
+      <CookieBanner />
       <Analytics />
     </div>
   );
