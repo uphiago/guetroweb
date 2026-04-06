@@ -1,6 +1,7 @@
 const DEV_MOCK = import.meta.env.VITE_FORMS_DEV_MOCK === 'true';
 const DEV_N8N_WEBHOOK_URL = import.meta.env.VITE_N8N_WEBHOOK_URL;
-const DEV_N8N_WEBHOOK_SECRET = import.meta.env.VITE_N8N_WEBHOOK_SECRET;
+const DEV_N8N_WEBHOOK_SECRET =
+  import.meta.env.VITE_N8N_WEBHOOK_JWT || import.meta.env.VITE_N8N_WEBHOOK_SECRET;
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));

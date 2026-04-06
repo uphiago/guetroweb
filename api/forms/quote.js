@@ -113,10 +113,12 @@ function getWebhookConfig() {
       process.env.N8N_WEBHOOK_URL ||
       process.env.VITE_N8N_WEBHOOK_URL ||
       process.env.VITE_FORMS_WEBHOOK_URL,
-    secret:
+    jwt:
+      process.env.N8N_WEBHOOK_JWT ||
       process.env.N8N_WEBHOOK_SECRET ||
       process.env.VITE_N8N_WEBHOOK_SECRET ||
       process.env.VITE_FORMS_WEBHOOK_TOKEN,
+    legacySecret: process.env.N8N_WEBHOOK_SECRET,
     timeoutMs: Number(process.env.N8N_WEBHOOK_TIMEOUT_MS || 15000),
   };
 }
@@ -246,9 +248,11 @@ export default async function handler(req, res) {
 
   try {
     const headers = { 'Content-Type': 'application/json' };
-    if (webhook.secret) {
-      headers['x-webhook-secret'] = webhook.secret;
-      headers.Authorization = `Bearer ${webhook.secret}`;
+    if (webhook.jwt) {
+      headers.Authorization = `Bearer ${webhook.jwt}`;
+    }
+    if (webhook.legacySecret) {
+      headers['x-webhook-secret'] = webhook.legacySecret;
     }
 
     const response = await fetch(webhook.url, {

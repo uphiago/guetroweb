@@ -27,7 +27,7 @@ Configure as envs na Vercel:
 
 ```bash
 N8N_WEBHOOK_URL=https://seu-n8n/webhook/...
-N8N_WEBHOOK_SECRET=seu-segredo-opcional
+N8N_WEBHOOK_JWT=seu-token-bearer-jwt
 FORMS_ALLOWED_ORIGINS=https://guetro.com.br,https://www.guetro.com.br
 N8N_WEBHOOK_TIMEOUT_MS=15000
 ```
