@@ -224,7 +224,7 @@ export default function QuoteStepper() {
   }
 
   return (
-    <section className="w-full max-w-4xl rounded-3xl border border-slate-200 bg-white p-4 shadow-xl shadow-slate-900/10 md:flex md:h-full md:min-h-0 md:flex-col md:p-6">
+    <section className="w-full max-w-4xl rounded-3xl border border-slate-200 bg-white p-4 shadow-xl shadow-slate-900/10 md:p-6">
       <h1 ref={headingRef} tabIndex={-1} className="text-balance text-2xl font-anta text-[var(--primary-dark)] outline-none md:shrink-0 md:text-3xl">
         Formulário de Cotação Guetro
       </h1>
@@ -268,7 +268,7 @@ export default function QuoteStepper() {
         />
       </div>
 
-      <div className="mt-3 rounded-3xl border border-slate-200 bg-slate-50 p-3 md:min-h-0 md:flex-1 md:p-4">
+      <div className="mt-3 rounded-3xl border border-slate-200 bg-slate-50 p-3 md:p-4">
         {step === 1 && (
           <form className="space-y-3" onSubmit={stepOneForm.handleSubmit(onSubmitStepOne)}>
             <div>

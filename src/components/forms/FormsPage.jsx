@@ -26,9 +26,9 @@ function CopyEmail({ email }) {
 
 export default function FormsPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-[radial-gradient(circle_at_top_right,_rgba(34,65,145,0.16),_transparent_45%),linear-gradient(180deg,#f8f9fc_0%,#eef3ff_100%)] md:h-screen md:overflow-hidden" style={{ '--dvh': '100dvh' }}>
+    <div className="flex min-h-screen flex-col bg-[radial-gradient(circle_at_top_right,_rgba(34,65,145,0.16),_transparent_45%),linear-gradient(180deg,#f8f9fc_0%,#eef3ff_100%)]" style={{ '--dvh': '100dvh' }}>
       {/* Content area */}
-      <div className="flex flex-1 flex-col px-3 py-4 md:min-h-0 md:px-4 md:py-5">
+      <div className="flex flex-1 flex-col px-3 py-4 md:px-4 md:py-5">
         {/* Header */}
         <div className="mx-auto mb-3 flex w-full max-w-4xl shrink-0 items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-2.5 md:mb-4 md:px-6">
           <a href="/" className="font-anta text-2xl text-[var(--primary-blue)]">
@@ -43,7 +43,7 @@ export default function FormsPage() {
         </div>
 
         {/* Form */}
-        <div className="mx-auto w-full max-w-4xl pb-4 md:min-h-0 md:flex-1 md:pb-0">
+        <div className="mx-auto w-full max-w-4xl pb-4 md:pb-0">
           <QuoteStepper />
         </div>
       </div>
