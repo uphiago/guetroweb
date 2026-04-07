@@ -76,6 +76,12 @@ function modalityLabel(modality) {
   return MODALITIES.find((item) => item.value === modality)?.title ?? modality;
 }
 
+function trackMetaLead() {
+  if (typeof window === 'undefined') return;
+  if (typeof window.fbq !== 'function') return;
+  window.fbq('track', 'Lead');
+}
+
 export default function QuoteStepper() {
   const [step, setStep] = useState(1);
   const [stepOneData, setStepOneData] = useState(null);
@@ -190,6 +196,7 @@ export default function QuoteStepper() {
         personCount: stepTwoData.personCount,
         ages: stepTwoData.ages,
       });
+      trackMetaLead();
       setSubmitStatus('success');
     } catch (error) {
       const code = error && typeof error === 'object' ? error.code : null;
