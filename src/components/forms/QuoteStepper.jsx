@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { Loader2 } from 'lucide-react';
 import { submitQuoteRequest } from '../../lib/quoteApi';
 import { whatsappUrl } from '../../lib/constants';
+import { trackCompleteRegistration } from '../../lib/metaPixel';
 
 const STEP_LABELS = ['Sobre você', 'Sobre o plano', 'Solicitar Cotação'];
 
@@ -180,6 +181,11 @@ export default function QuoteStepper() {
         modalityCode: stepTwoData.modality,
         personCount: stepTwoData.personCount,
         ages: stepTwoData.ages,
+      });
+      trackCompleteRegistration({
+        content_name: 'Solicitacao de cotacao',
+        status: 'submitted',
+        num_items: stepTwoData.personCount,
       });
       setSubmitStatus('success');
     } catch (error) {
