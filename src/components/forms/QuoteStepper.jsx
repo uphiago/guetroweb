@@ -15,12 +15,6 @@ const MODALITIES = [
     description: 'Ideal para você e sua família. (Mínimo 1 pessoa)',
   },
   {
-    value: 'adesao',
-    title: 'Coletivo por Adesão',
-    description:
-      'Contratado por meio de entidade de classe ou associação profissional, com intermediação de administradora de benefícios.',
-  },
-  {
     value: 'pj',
     title: 'Pessoa Jurídica (PJ)',
     description: 'Ideal para empresa com CNPJ ativo. (Mínimo 1 pessoa)',
@@ -36,10 +30,7 @@ const MODALITIES = [
 const STEP_ONE_SCHEMA = z.object({
   fullName: z
     .string()
-    .min(1, 'Informe seu nome completo.')
-    .refine((v) => v.trim().split(/\s+/).length >= 2, {
-      message: 'Informe nome e sobrenome.',
-    }),
+    .min(1, 'Informe seu nome.'),
   phone: z
     .string()
     .min(1, 'Informe seu telefone.')
@@ -74,12 +65,6 @@ function formatPhone(raw) {
 
 function modalityLabel(modality) {
   return MODALITIES.find((item) => item.value === modality)?.title ?? modality;
-}
-
-function trackMetaLead() {
-  if (typeof window === 'undefined') return;
-  if (typeof window.fbq !== 'function') return;
-  window.fbq('track', 'Lead');
 }
 
 export default function QuoteStepper() {
@@ -196,7 +181,6 @@ export default function QuoteStepper() {
         personCount: stepTwoData.personCount,
         ages: stepTwoData.ages,
       });
-      trackMetaLead();
       setSubmitStatus('success');
     } catch (error) {
       const code = error && typeof error === 'object' ? error.code : null;
@@ -273,7 +257,7 @@ export default function QuoteStepper() {
           <form className="space-y-3" onSubmit={stepOneForm.handleSubmit(onSubmitStepOne)}>
             <div>
               <label htmlFor="fullName" className="text-sm font-semibold text-slate-900">
-                Nome completo
+                Nome
               </label>
               <input
                 id="fullName"
